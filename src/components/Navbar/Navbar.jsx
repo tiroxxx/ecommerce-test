@@ -1,4 +1,5 @@
 import { ShoppingCart } from '@material-ui/icons';
+import useStyles from './styles';
 import {
   AppBar,
   Tollbar,
@@ -11,13 +12,15 @@ import {
 } from '@material-ui/core';
 
 export default function Navbar() {
+  const classes = useStyles();
+
   return (
     <>
       <AppBar position="fix" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography variant="h6" className={classes.title} color="inherit">
             <img
-              src="https://i.ibb.co/Qp1SXBw/commerce.png"
+              src="https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/06/shopping-online.jpg"
               alt="Commerce.js"
               height="25px"
               className={classes.image}

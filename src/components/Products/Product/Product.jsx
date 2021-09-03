@@ -14,7 +14,7 @@ export default function Product({ product }) {
 
   return (
     <Card className={CallMissedSharp.root}>
-      <CardMedia className={classes.media} image="" title={product.name} />
+      <CardMedia className={classes.media} image={product.image} title={product.name} />
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
