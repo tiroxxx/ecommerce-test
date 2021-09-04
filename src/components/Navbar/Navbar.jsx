@@ -1,5 +1,6 @@
 import { ShoppingCart } from '@material-ui/icons';
 import useStyles from './styles';
+import { Link, useLocation } from 'react-router-dom';
 import {
   AppBar,
   Tollbar,
@@ -13,12 +14,19 @@ import {
 
 export default function Navbar({ totalItems }) {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit">
+          <Typography
+            component={Link}
+            to="/"
+            variant="h6"
+            className={classes.title}
+            color="inherit"
+          >
             <img
               src="https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/06/shopping-online.jpg"
               alt="Commerce.js"
@@ -28,13 +36,20 @@ export default function Navbar({ totalItems }) {
             Commerce.js
           </Typography>
           <div className={classes.grow} />
-          <div className={classes.button}>
-            <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={totalItems} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </div>
+          {location.pathname == '/' && (
+            <div className={classes.button}>
+              <IconButton
+                component={Link}
+                to="/cart"
+                aria-label="Show cart items"
+                color="inherit"
+              >
+                <Badge badgeContent={totalItems} color="secondary">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </>

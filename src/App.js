@@ -22,6 +22,11 @@ function App() {
     setCart(item.cart);
   }
 
+  async function updateCartQty(productId, quantity) {
+    const item = await commerce.cart.update(productId, { quantity });
+    setCart(item.cart);
+  }
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
