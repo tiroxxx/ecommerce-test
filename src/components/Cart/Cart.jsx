@@ -55,7 +55,7 @@ export default function Cart({ cart }) {
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3">
+      <Typography className={classes.title} variant="h3" gutterBottom>
         Your Shopping Cart
       </Typography>
       {isEmpty ? <EmptyCart /> : <FilledCart />}
