@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <>
-      <AppBar position="fix" className={classes.appBar} color="inherit">
+      <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography variant="h6" className={classes.title} color="inherit">
             <img
