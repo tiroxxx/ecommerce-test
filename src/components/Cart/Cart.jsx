@@ -3,7 +3,12 @@ import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
 import { Link } from 'react-router-dom';
 
-export default function Cart({ cart }) {
+export default function Cart({
+  cart,
+  updateCartQty,
+  removeFromCart,
+  emptyCart,
+}) {
   const isEmpty = !cart.line_items?.length;
   const classes = useStyles();
 
@@ -11,7 +16,9 @@ export default function Cart({ cart }) {
     return (
       <Typography variat="subtitle1">
         You have no items in your shopping cart,
-        <Link to="/" className={classes.link}>start adding some!</Link>
+        <Link to="/" className={classes.link}>
+          start adding some!
+        </Link>
       </Typography>
     );
   }
