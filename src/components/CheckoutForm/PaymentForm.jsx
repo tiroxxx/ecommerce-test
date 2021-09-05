@@ -10,7 +10,12 @@ import {
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
 
-export default function PaymentForm({ checkoutToken, backStep }) {
+export default function PaymentForm({
+  checkoutToken,
+  backStep,
+  captureCheckout,
+  nextStep,
+}) {
   async function handleFormSubmit(event, elements, stripe) {
     event.preventDefault();
 
@@ -49,6 +54,8 @@ export default function PaymentForm({ checkoutToken, backStep }) {
           },
         },
       };
+      captureCheckout(checkoutToken.id, orderData);
+      nextStep();
     }
   }
 

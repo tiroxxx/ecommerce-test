@@ -16,7 +16,7 @@ import {
 
 const steps = ['Shipping address', 'Payment details'];
 
-export default function Checkout({ cart }) {
+export default function Checkout({ cart, order, captureCheckout, error }) {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
@@ -39,7 +39,7 @@ export default function Checkout({ cart }) {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   }
 
-  function backStep(data) {
+  function backStep() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   }
 
@@ -56,7 +56,13 @@ export default function Checkout({ cart }) {
     return activeStep === 0 ? (
       <AddressForm checkoutToken={checkoutToken} next={next} />
     ) : (
-      <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} backStep={backStep}/>
+      <PaymentForm
+        captureCheckout={captureCheckout}
+        shippingData={shippingData}
+        checkoutToken={checkoutToken}
+        backStep={backStep}
+        nextStep={nextStep}
+      />
     );
   }
 
