@@ -42,7 +42,12 @@ export default function CartItem({ item, updateCartQty, removeFromCart }) {
             +
           </Button>
         </div>
-        <Button variant="contained" type="button" color="secondary">
+        <Button
+          variant="contained"
+          type="button"
+          color="secondary"
+          onClick={() => removeFromCart(item.id)}
+        >
           Remove
         </Button>
       </CardActions>
