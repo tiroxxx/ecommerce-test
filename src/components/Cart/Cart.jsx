@@ -28,7 +28,11 @@ export default function Cart({
         <Grid container spacing={3}>
           {cart.line_items.map((item) => (
             <Grid key={item.id} item xs={12} sm={4}>
-              <CartItem item={item} />
+              <CartItem
+                item={item}
+                updateCartQty={updateCartQty}
+                removeFromCart={removeFromCart}
+              />
             </Grid>
           ))}
         </Grid>
@@ -43,6 +47,7 @@ export default function Cart({
               type="button"
               variant="contained"
               color="secondary"
+              onClick={emptyCart}
             >
               Empty Cart
             </Button>

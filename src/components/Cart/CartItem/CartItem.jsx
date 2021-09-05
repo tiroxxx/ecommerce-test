@@ -8,9 +8,9 @@ import {
   CardMedia,
 } from '@material-ui/core';
 
-export default function CartItem({ item }) {
+export default function CartItem({ item, updateCartQty, removeFromCart }) {
   const classes = useStyles();
-  
+
   return (
     <Card>
       <CardMedia
@@ -26,11 +26,19 @@ export default function CartItem({ item }) {
       </CardContent>
       <CardActions className={classes.cartActions}>
         <div className={classes.buttons}>
-          <Button type="button" size="small">
+          <Button
+            type="button"
+            size="small"
+            onClick={() => updateCartQty(item.id, item.quantity - 1)}
+          >
             -
           </Button>
           <Typography>{item.quantity}</Typography>
-          <Button type="button" size="small">
+          <Button
+            type="button"
+            size="small"
+            onClick={() => updateCartQty(item.id, item.quantity + 1)}
+          >
             +
           </Button>
         </div>
