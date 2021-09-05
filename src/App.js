@@ -3,7 +3,6 @@ import './App.css';
 import { Products, Navbar, Cart, Checkout } from './components';
 import { commerce } from './lib/commerce';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { set } from 'react-hook-form';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -53,6 +52,7 @@ function App() {
         newOrder
       );
 
+      console.log(incomingOrder);
       setOrder(incomingOrder);
       refreshCart();
     } catch (error) {
@@ -65,7 +65,6 @@ function App() {
     fetchCart();
   }, []);
 
-  console.log(cart);
 
   return (
     <Router>

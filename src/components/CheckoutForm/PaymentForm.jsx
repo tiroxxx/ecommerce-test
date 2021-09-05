@@ -15,6 +15,7 @@ export default function PaymentForm({
   backStep,
   captureCheckout,
   nextStep,
+  shippingData,
 }) {
   async function handleFormSubmit(event, elements, stripe) {
     event.preventDefault();
@@ -23,7 +24,7 @@ export default function PaymentForm({
 
     const cardElement = elements.getElement(CardElement);
 
-    const { error, paymentMethod } = await stripe.createPaymnetMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
     });
@@ -35,7 +36,7 @@ export default function PaymentForm({
         line_items: checkoutToken.live.line_items,
         customer: {
           firstname: shippingData.firstName,
-          lastname: shippingData.lastname,
+          lastname: shippingData.lastName,
           email: shippingData.email,
         },
         shipping: {
@@ -80,7 +81,7 @@ export default function PaymentForm({
                 <Button
                   type="submit"
                   variant="contained"
-                  disable={!stripe}
+                  disabled={!stripe}
                   color="primary"
                 >
                   Pay {checkoutToken.live.subtotal.formatted_with_symbol}

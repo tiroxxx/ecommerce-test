@@ -38,32 +38,45 @@ export default function AddressForm({ checkoutToken, next }) {
   }));
 
   async function fetchShippingCountries(checkoutTokenId) {
-    const { countries } = await commerce.services.localeListShippingCountries(
-      checkoutTokenId
-    );
-    setShippingCountries(countries);
-    setShippingCountry(Object.keys(countries)[0]);
+    try {
+      const { countries } = await commerce.services.localeListShippingCountries(
+        checkoutTokenId
+      );
+      setShippingCountries(countries);
+      setShippingCountry(Object.keys(countries)[0]);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function fetchSubdivisions(countryCode) {
-    const { subdivisions } = await commerce.services.localeListSubdivisions(
-      countryCode
-    );
-    setShippingSubdivisions(subdivisions);
-    setShippingSubdivision(Object.keys(subdivisions)[0]);
+    try {
+      const { subdivisions } = await commerce.services.localeListSubdivisions(
+        countryCode
+      );
+
+      setShippingSubdivisions(subdivisions);
+      setShippingSubdivision(Object.keys(subdivisions)[0]);
+    } catch (error) {
+      console.error(error);
+    }
   }
   async function fetchShippingOptions(checkoutTokenId, country, region = null) {
-    const options = await commerce.checkout.getShippingOptions(
-      checkoutTokenId,
-      { country, region }
-    );
-    setShippingOptions(options);
-    setShippingOption(options[0].id);
+    try {
+      const options = await commerce.checkout.getShippingOptions(
+        checkoutTokenId,
+        { country, region }
+      );
+      setShippingOptions(options);
+      setShippingOption(options[0].id);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
-  }, []);
+  }, [checkoutToken.id]);
 
   useEffect(() => {
     if (shippingCountry) fetchSubdivisions(shippingCountry);
@@ -76,7 +89,7 @@ export default function AddressForm({ checkoutToken, next }) {
         shippingCountry,
         shippingSubdivision
       );
-  }, [shippingSubdivision]);
+  }, [shippingSubdivision, checkoutToken.id, shippingCountry]);
 
   return (
     <>
