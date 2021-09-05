@@ -56,7 +56,7 @@ export default function Checkout({ cart }) {
     return activeStep === 0 ? (
       <AddressForm checkoutToken={checkoutToken} next={next} />
     ) : (
-      <PaymentForm shippingData={shippingData} />
+      <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} />
     );
   }
 
