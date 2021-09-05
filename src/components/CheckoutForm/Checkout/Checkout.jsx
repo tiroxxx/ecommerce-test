@@ -16,7 +16,7 @@ import {
 const steps = ['Shipping address', 'Payment details'];
 
 export default function Checkout() {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const classes = useStyles();
 
   function Confirmation() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
+import FormInput from './CustomTextField';
 import {
   InputLabel,
   Select,
@@ -10,19 +11,20 @@ import {
 } from '@material-ui/core';
 
 export default function AddressForm() {
+  const methods = useForm();
 
-    const methods = useForm();
-
-  return <>
-    <Typography variant="h6" guttterBottom>
+  return (
+    <>
+      <Typography variant="h6" guttterBottom>
         Shipping Address
-    </Typography>
-    <FormProvider {...methods}>
-        <form onSubmit={}>
-            <Grid container spacing={3}>
-                
-            </Grid>
+      </Typography>
+      <FormProvider {...methods}>
+        <form onSubmit="">
+          <Grid container spacing={3}>
+            <FormInput required name="firstName" label="First Name" />
+          </Grid>
         </form>
-    </FormProvider>
-  </>;
+      </FormProvider>
+    </>
+  );
 }
