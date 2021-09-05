@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { mergeClasses } from '@material-ui/styles';
-import { CallMissedSharp } from '@material-ui/icons';
-import useStyles from "./styles"
+import useStyles from './styles';
+import AddressForm from '../AddressForm';
+import PaymentForm from '../PaymentForm';
 import {
   Paper,
   Stepper,
@@ -16,8 +16,16 @@ import {
 const steps = ['Shipping address', 'Payment details'];
 
 export default function Checkout() {
-  const [activeStep, setActiveStep] = useState(0);
-  const classes = useStyles()
+  const [activeStep, setActiveStep] = useState(2);
+  const classes = useStyles();
+
+  function Confirmation() {
+    return <div>Confirmation</div>;
+  }
+
+  function Form() {
+    return activeStep === 0 ? <AddressForm /> : <PaymentForm />;
+  }
 
   return (
     <>
@@ -34,6 +42,7 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
+          {activeStep === steps.length ? <Confirmation /> : <Form />}
         </Paper>
       </main>
     </>
