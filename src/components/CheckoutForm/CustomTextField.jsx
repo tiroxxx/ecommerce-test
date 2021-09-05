@@ -8,12 +8,16 @@ export default function FormInput({ name, label, required }) {
     <Grid item xs={12} sm={6}>
       <Controller
         render={({ field }) => (
-          <TextField {...field} fillWidth label={label} defaultValue="" />
+          <TextField
+            {...field}
+            fillWidth
+            label={label}
+            defaultValue=""
+            required={required}
+            control={control}
+            label={label}
+          />
         )}
-        as={TextField}
-        control={control}
-        label={label}
-        required={required}
       />
     </Grid>
   );
