@@ -41,7 +41,6 @@ function App() {
 
   async function refreshCart() {
     const newCart = await commerce.cart.refresh();
-
     setCart(newCart);
   }
 
@@ -51,11 +50,10 @@ function App() {
         checkoutTokenId,
         newOrder
       );
-
-      console.log(incomingOrder);
       setOrder(incomingOrder);
       refreshCart();
     } catch (error) {
+      console.log(error);
       setErrorMessage(error.data.error.message);
     }
   }
