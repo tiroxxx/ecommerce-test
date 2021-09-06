@@ -37,7 +37,7 @@ export default function Checkout({ cart, order, captureCheckout, error }) {
       }
     }
     generateToken();
-  }, [cart]);
+  }, []);
 
   function nextStep() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
