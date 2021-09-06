@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useStyles from './styles';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
@@ -13,6 +13,7 @@ import {
   CircularProgress,
   Divider,
   Button,
+  CssBaseline,
 } from '@material-ui/core';
 
 const steps = ['Shipping address', 'Payment details'];
@@ -21,6 +22,7 @@ export default function Checkout({ cart, order, captureCheckout, error }) {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
+  const history = useHistory()
   const classes = useStyles();
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function Checkout({ cart, order, captureCheckout, error }) {
         });
         setCheckoutToken(token);
       } catch (error) {
-        console.error(error);
+        history.pushState("/");
       }
     }
 
@@ -56,7 +58,7 @@ export default function Checkout({ cart, order, captureCheckout, error }) {
       <>
         <div>
           <Typography variant="h5">
-            Thank you for your purchase, {order.customer.firstname}{" "}
+            Thank you for your purchase, {order.customer.firstname}{' '}
             {order.customer.lastname}
           </Typography>
           <Divider className={classes.divider} />
@@ -104,6 +106,7 @@ export default function Checkout({ cart, order, captureCheckout, error }) {
 
   return (
     <>
+      <CssBaseline />
       <div className={classes.toolbar} />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
