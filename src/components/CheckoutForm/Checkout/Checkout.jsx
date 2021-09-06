@@ -33,10 +33,9 @@ export default function Checkout({ cart, order, captureCheckout, error }) {
         });
         setCheckoutToken(token);
       } catch (error) {
-        history.pushState("/");
+        history.push("/");
       }
     }
-
     generateToken();
   }, [cart]);
 

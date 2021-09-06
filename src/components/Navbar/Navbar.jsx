@@ -3,11 +3,8 @@ import useStyles from './styles';
 import { Link, useLocation } from 'react-router-dom';
 import {
   AppBar,
-  Tollbar,
   IconButton,
   Badge,
-  MenuItem,
-  Menu,
   Typography,
   Toolbar,
 } from '@material-ui/core';
